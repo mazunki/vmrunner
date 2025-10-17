@@ -32,6 +32,10 @@ in
     allow bridge43
   '';
 
+  config.networking.firewall = {
+    trustedInterfaces = [ "bridge43" ];
+  };
+
   config.environment.variables.QEMU_BRIDGE_HELPER = qemuBridgeHelperPath;
 }
 
