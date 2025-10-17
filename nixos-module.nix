@@ -2,6 +2,7 @@
 { config, lib, pkgs, ... }:
 let
   qemuPkg = config.services.vmrunner.qemuPackage or pkgs.qemu;
+  qemuBridgeHelperPath  = "/run/wrappers/bin/qemu-bridge-helper";
 in
 {
   options.services.vmrunner.qemuPackage = lib.mkOption {
@@ -30,5 +31,7 @@ in
   config.environment.etc."qemu/bridge.conf".text = ''
     allow bridge43
   '';
+
+  config.environment.variables.QEMU_BRIDGE_HELPER = qemuBridgeHelperPath;
 }
 
