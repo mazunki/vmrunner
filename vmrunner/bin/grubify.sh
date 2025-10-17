@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/env bash
 
 # GRUB uses roughly 4.6 Mb of disk
 GRUB_KB=5000

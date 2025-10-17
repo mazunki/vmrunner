@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/env bash
 #
 # Stuff everything in the ./memdisk directory into a brand new
 # FAT-formatted disk image, $FILENAME.
