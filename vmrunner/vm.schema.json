@@ -80,6 +80,52 @@
       }
     },
 
+    "virtiocon" : {
+      "description" : "VirtioCON device. Only used for testing Virtio queues for now",
+      "type" : "object",
+      "properties" : {
+        "path" : {
+          "description" : "The path to redirect the guest output",
+          "type" : "string"
+        }
+      },
+
+      "required" : ["path"]
+    },
+
+    "virtiofs" : {
+      "description" : "VirtioFS device",
+      "type" : "object",
+      "properties" : {
+        "shared" : {
+          "description" : "Directory to be shared with guest", 
+          "type" : "string"
+        }
+      },
+
+      "required" : ["shared"]
+    },
+
+    "virtiopmem": {
+      "description" : "VirtioPMEM devices",
+      "type" : "array",
+      "items" : {
+        "description" : "Device configuration",
+        "type" : "object",
+        "properties" : {
+          "image" : {
+            "description" : "Path to persistent image file",
+            "type" : "string"
+          },
+          "size" : {
+            "description" : "Persistent memory size in megabytes",
+            "type" : "number"
+          }
+        }
+      },
+
+      "required" : ["image", "size"]
+    },
 
     "mem" : {
       "description" : "Amount of memory in megabytes",
