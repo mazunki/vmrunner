@@ -574,7 +574,7 @@ class qemu(hypervisor):
 
         debug_args = []
         if debug:
-            debug_args = ["-s"]
+            debug_args = ["-s", "-S"]
 
         # multiboot - e.g. boot with '-kernel' and no bootloader
         if multiboot:
