@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # creates a bridge that can be used to connect a virtual machine to.
 set -e
 
