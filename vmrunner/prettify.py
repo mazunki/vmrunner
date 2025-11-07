@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """ pretty printer for vmrunner """
 
 # pylint: disable=invalid-name,line-too-long

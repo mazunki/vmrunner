@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 """ validate VM configuration against schema """
 
 # pylint: disable=invalid-name
