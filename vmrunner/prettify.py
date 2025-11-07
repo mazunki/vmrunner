@@ -3,7 +3,6 @@
 
 # pylint: disable=invalid-name,line-too-long
 
-from __future__ import print_function
 from builtins import str
 from builtins import range
 
