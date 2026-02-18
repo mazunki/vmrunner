@@ -18,6 +18,7 @@ import traceback
 import signal
 import tempfile
 from enum import Enum
+import grp
 import platform
 import psutil
 
@@ -230,6 +231,13 @@ class hypervisor:
             print(color.WARNING("Running with sudo"))
             self._sudo = True
 
+        cmdlist.extend([
+            # "-D", "qemu.log",
+            # "-d", "mmu,page,exec,guest_errors",
+            # "-icount", "shift=auto,rr=record,rrfile=rr.bin"
+            # "-icount", "shift=auto,rr=replay,rrfile=rr.bin"
+        ])
+        print(f"command: {" ".join(cmdlist)}")
 
         # Start a subprocess
         # pylint: disable-next=consider-using-with
@@ -556,8 +564,14 @@ class qemu(hypervisor):
             self.info("KVM OFF")
             return False
 
+
         if not self._allow_sudo:
-            raise Exception("KVM is enabled, which requires sudo, but sudo is not enabled")
+            if "kvm" in (g.gr_name for g in grp.getgrall()):
+                _in_kvm_group = grp.getgrnam("kvm").gr_gid in os.getgroups()
+                if not _in_kvm_group:
+                    raise Exception("KVM was requested, but user is not in the 'kvm' group")
+            else:
+                raise Exception("KVM is enabled, which requires sudo, but sudo is not enabled")
 
         command = "egrep -m 1 '^flags.*(vmx|svm)' /proc/cpuinfo"
         try:
